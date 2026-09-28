@@ -1,29 +1,23 @@
 pipeline {
     agent any
-    tools{
-        maven 'MAVEN'
-    }
+
     stages {
-        stage('git repo & clean') {
+
+        stage('Checkout') {
             steps {
-                //bat "rmdir  /s /q mavenjava"
-                bat "git clone provide your github link"
-                bat "mvn clean -f Jenkinsfile"
+                checkout scm
             }
         }
-        stage('install') {
+
+        stage('Build') {
             steps {
-                bat "mvn install -f Jenkinsfile" #project name#
+                bat 'mvn clean package'
             }
         }
-        stage('test') {
+
+        stage('Test') {
             steps {
-                bat "mvn test -f Jenkinsfile"
-            }
-        }
-        stage('package') {
-            steps {
-                bat "mvn package -f Jenkinsfile"
+                bat 'mvn test'
             }
         }
     }
