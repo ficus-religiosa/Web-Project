@@ -8,22 +8,22 @@ pipeline {
             steps {
                 //bat "rmdir  /s /q mavenjava"
                 bat "git clone provide your github link"
-                bat "mvn clean -f mavenjava"
+                bat "mvn clean -f Jenkinsfile"
             }
         }
         stage('install') {
             steps {
-                bat "mvn install -f mavenjava" #project name#
+                bat "mvn install -f Jenkinsfile" #project name#
             }
         }
         stage('test') {
             steps {
-                bat "mvn test -f mavenjava"
+                bat "mvn test -f Jenkinsfile"
             }
         }
         stage('package') {
             steps {
-                bat "mvn package -f mavenjava"
+                bat "mvn package -f Jenkinsfile"
             }
         }
     }
